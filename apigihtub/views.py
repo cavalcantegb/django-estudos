@@ -16,6 +16,8 @@ class APIGithubView(APIView):
         response = services.get_user(self,username)
         if response is not None:
             message = response.name
+            data = response.parse_user()
+            return Response({"message":message, "data": data})
         else:
             message = "Fail"
         return Response({"message":message})
