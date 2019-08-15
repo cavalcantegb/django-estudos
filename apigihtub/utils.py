@@ -12,9 +12,11 @@ class PayloadDict(object):
     def parse_user(self):
         data = {}
         for item in self.__dict__:
-            if item == 'full_name':
+            if item == 'login':
                 data[item] = self.__dict__[item]
-            elif item == 'name':
+            elif item == 'id':
+                data[item] = self.__dict__[item]
+            elif item == 'html_url':
                 data[item] = self.__dict__[item]
         return data
 
@@ -33,8 +35,10 @@ class PayloadList(object):
             for key in item.__dict__:
                 if key == 'name':
                     el[key] = item.name
-                elif key == 'full_name':
-                    el[key] = item.full_name
+                elif key == 'html_url':
+                    el[key] = item.html_url
+                elif key == 'owner':
+                    el[key] = item.owner['id']
             if len(el) > 0:
                 data.append(el)        
         return {"repos" : data}
@@ -46,8 +50,10 @@ class PayloadList(object):
             for key in item.__dict__:
                 if key == 'login':
                     el[key] = item.login
-                elif key == 'repos_url':
-                    el[key] = item.repos_url
+                elif key == 'id':
+                    el[key] = item.id
+                elif key == 'html_url':
+                    el[key] = item.html_url
             if len(el) > 0:
                 data.append(el)        
         return {"users" : data}
