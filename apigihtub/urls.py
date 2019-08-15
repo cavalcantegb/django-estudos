@@ -1,6 +1,8 @@
 from django.urls import path
-from .views import APIGithubView
+from .views import UserGithubView, ReposGithubView
 
 urlpatterns = [
-    path('api-github/', APIGithubView.as_view())
+    path('user/', UserGithubView.as_view()),
+    path('repos/', ReposGithubView.as_view()),
+    
 ]

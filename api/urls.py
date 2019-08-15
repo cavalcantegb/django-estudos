@@ -27,5 +27,5 @@ urlpatterns = [
     re_path('api/(?P<version>(v1|v2))/', include('music.urls')),
     re_path('api/(?P<version>(v1|v2))/', include('movie.urls')),
     path('api/', include('apiloja.urls')),
-    path('api/', include('apigihtub.urls'))
+    path('api-github/', include('apigihtub.urls'))
 ]
