@@ -4,7 +4,7 @@ class Payload(object):
     def __init__(self, j):
         self.__dict__ = j
 
-class PayloadUser(object):
+class PayloadDict(object):
     def __init__(self, j):
         json_obj = json.loads(j)
         self.__dict__ = json_obj
@@ -18,7 +18,7 @@ class PayloadUser(object):
                 data[item] = self.__dict__[item]
         return data
 
-class PayloadRepo(object):
+class PayloadList(object):
     payloads = []
     
     def __init__(self, j):
@@ -38,6 +38,19 @@ class PayloadRepo(object):
             if len(el) > 0:
                 data.append(el)        
         return {"repos" : data}
+    
+    def parse_users(self):
+        data = []
+        for item in self.payloads:
+            el = {}
+            for key in item.__dict__:
+                if key == 'login':
+                    el[key] = item.login
+                elif key == 'repos_url':
+                    el[key] = item.repos_url
+            if len(el) > 0:
+                data.append(el)        
+        return {"users" : data}
         
             
 

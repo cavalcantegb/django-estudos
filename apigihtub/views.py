@@ -13,26 +13,36 @@ import json
 
 ####### Users
 class UserGithubView(APIView):
-    def post(self, request):
+    def get(self, request):
         username = request.data.get("username")
         response = services.get_user(self,username)
         if response is not None:
             message = response.name
             data = response.parse_user()
-            return Response({"message":message, "data": data})
+            return Response(data)
         else:
             message = "Fail"
         return Response({"message":message})
 
 ####### Repos    
 class ReposGithubView(APIView):
-    def post(self, request):
+    def get(self, request):
         username = request.data.get("username")
         response = services.get_repos(self,username)
         if response is not None:
-            data = response.parse_repos()
-            
-            return Response({"message":"message", "data": data})
+            data = response.parse_repos()            
+            return Response(data)
         else:
             message = "Fail"
         return Response({"message":message})
+    
+####### List Users
+class UsersListGithubView(APIView):
+    def get(self, request):
+        page = request.data.get("page")
+        per_page = request.data.get("per_page")
+        response = services.list_users(page, per_page)
+        if response is not None:
+            data = response.parse_users()
+            return Response(data)
+        
