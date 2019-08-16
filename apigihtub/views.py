@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from rest_framework import generics
+from rest_framework import generics, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
@@ -55,6 +55,7 @@ class UsersListGithubView(APIView):
     
     def post(self, request):
         users = request.data.get("users")
+        
         for item in users:
             response = services.get_user(self, item['user'])
             if response is not None:
@@ -76,4 +77,15 @@ class UsersListGithubView(APIView):
                                 pass
         return Response({"data": "Sucesss"})
                 
+####### List Users and Repos
+class UsersReposListGithubView(APIView):
+    def get(self, reques):
+        data = []
+        users = User.objects.all()
+        for user in users:
+            user_serializer=UserSerializer(user)
+            repos = Repo.objects.all().filter(owner=user.user_id)
+            repos_serializer = RepoSerializer(repos, many=True)
+            data.append({'user':user_serializer.data, 'repos':repos_serializer.data})
             
+        return Response({'users':data}, status=status.HTTP_200_OK)
