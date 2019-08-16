@@ -55,7 +55,6 @@ class UsersListGithubView(APIView):
     
     def post(self, request):
         users = request.data.get("users")
-        users_list = []
         for item in users:
             response = services.get_user(self, item['user'])
             if response is not None:
@@ -64,23 +63,17 @@ class UsersListGithubView(APIView):
                 if serializer.is_valid(raise_exception=True):
                     try:
                         user_saved = serializer.save()
-                        
-                        users_list.append({user_saved.username:"Saved successfully."})
                     except:
-                        users_list.append({item['user']:"This user is already in our systems (:"})
-
+                        pass
                     response_repos = services.get_repos(self, item['user'])
                     repos = response_repos.parse_repos()
-                    repo_list = []
                     for repo in repos['repos']:
                         repo_serializer = RepoSerializer(data=repo)
                         if repo_serializer.is_valid(raise_exception=True):
                             try:              
                                 repo_saved = repo_serializer.save()
                             except:
-                                repo_saved = object
-            else:
-                users_list.append({item['user']:"Sadly our system could not find this user on github. Are you sure this is the username you are looking for?"})
-        return Response({"users":users_list})
+                                pass
+        return Response({"data": "Sucesss"})
                 
             
