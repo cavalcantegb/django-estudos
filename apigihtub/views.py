@@ -88,4 +88,4 @@ class UsersReposListGithubView(APIView):
             repos_serializer = RepoSerializer(repos, many=True)
             data.append({'user':user_serializer.data, 'repos':repos_serializer.data})
             
-        return Response({'users':data}, status=status.HTTP_200_OK)
+        return Response({'data':data}, status=status.HTTP_200_OK)
