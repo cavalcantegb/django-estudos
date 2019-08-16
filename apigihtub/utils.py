@@ -39,6 +39,8 @@ class PayloadList(object):
                     el[key] = item.html_url
                 elif key == 'owner':
                     el[key] = item.owner['id']
+                elif key == 'id':
+                    el[key] = item.id
             if len(el) > 0:
                 data.append(el)        
         return {"repos" : data}

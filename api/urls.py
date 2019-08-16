@@ -23,9 +23,5 @@ schema_view = get_swagger_view(title="API do Gui")
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api_doc/', schema_view),
-    path('api/', include('article.urls')),
-    re_path('api/(?P<version>(v1|v2))/', include('music.urls')),
-    re_path('api/(?P<version>(v1|v2))/', include('movie.urls')),
-    path('api/', include('apiloja.urls')),
     path('api-github/', include('apigihtub.urls'))
 ]

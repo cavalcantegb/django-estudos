@@ -24,6 +24,13 @@ class UserGithubView(APIView):
             message = "Fail"
         return Response({"message":message})
 
+    def post(self, request):
+        user_data = request.data
+        serializer = UserSerializer(data=user_data)
+        if serializer.is_valid(raise_exception=True):
+            user_saved = serializer.save()
+        return Response({"success": "User {} created successfully".format(user_saved.username)})
+
 ####### Repos    
 class ReposGithubView(APIView):
     def get(self, request):
