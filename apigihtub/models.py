@@ -10,10 +10,10 @@ class User(models.Model):
         return "Github User: " + self.username
 
 class Repo(models.Model):
-    user_id = models.IntegerField(primary_key=True)
+    id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=200, null=False)
     html_url = models.CharField(max_length=200, null=False)
-    owner = models.ForeignKey(User, on_delete=models.CASCADE, null=False)
+    owner = models.IntegerField(null=False)
     
     def __str__(self):
         return "Github Repo: " + self.name

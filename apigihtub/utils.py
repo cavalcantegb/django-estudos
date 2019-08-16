@@ -13,11 +13,11 @@ class PayloadDict(object):
         data = {}
         for item in self.__dict__:
             if item == 'login':
-                data[item] = self.__dict__[item]
+                data['username'] = self.__dict__[item]
             elif item == 'id':
-                data[item] = self.__dict__[item]
+                data['user_id'] = self.__dict__[item]
             elif item == 'html_url':
-                data[item] = self.__dict__[item]
+                data['url'] = self.__dict__[item]
         return data
 
 class PayloadList(object):

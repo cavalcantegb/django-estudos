@@ -10,7 +10,11 @@ class UserSerializer(serializers.Serializer):
         return User.objects.create(**validated_data)
     
 class RepoSerializer(serializers.Serializer):
-    class Meta:
-        model = Repo
-        fields = ('id', 'name', 'html_url', 'owner')
+    id = serializers.IntegerField()
+    name = serializers.CharField()
+    html_url = serializers.CharField()
+    owner = serializers.IntegerField()
     
+    def create(self, validated_data):
+        return Repo.objects.create(**validated_data)
+

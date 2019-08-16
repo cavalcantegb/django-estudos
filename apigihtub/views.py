@@ -3,9 +3,9 @@ from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
-from .serializers import UserSerializer
+from .serializers import UserSerializer, RepoSerializer
 from . import services
-from .models import User
+from .models import User, Repo
 import requests 
 import json
 
@@ -17,7 +17,7 @@ class UserGithubView(APIView):
         username = request.data.get("username")
         response = services.get_user(self,username)
         if response is not None:
-            message = response.name
+            message = response.username
             data = response.parse_user()
             return Response(data)
         else:
@@ -52,4 +52,35 @@ class UsersListGithubView(APIView):
         if response is not None:
             data = response.parse_users()
             return Response(data)
-        
+    
+    def post(self, request):
+        users = request.data.get("users")
+        users_list = []
+        for item in users:
+            response = services.get_user(self, item['user'])
+            if response is not None:
+                user = response.parse_user()
+                serializer = UserSerializer(data=user)
+                if serializer.is_valid(raise_exception=True):
+                    try:
+                        user_saved = serializer.save()
+                        
+                        users_list.append({user_saved.username:"Saved successfully."})
+                    except:
+                        users_list.append({item['user']:"This user is already in our systems (:"})
+
+                    response_repos = services.get_repos(self, item['user'])
+                    repos = response_repos.parse_repos()
+                    repo_list = []
+                    for repo in repos['repos']:
+                        repo_serializer = RepoSerializer(data=repo)
+                        if repo_serializer.is_valid(raise_exception=True):
+                            try:              
+                                repo_saved = repo_serializer.save()
+                            except:
+                                repo_saved = object
+            else:
+                users_list.append({item['user']:"Sadly our system could not find this user on github. Are you sure this is the username you are looking for?"})
+        return Response({"users":users_list})
+                
+            
