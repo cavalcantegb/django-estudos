@@ -7,10 +7,15 @@ The purpose of this application is to allow users to fetch user and repositories
 
 ##### That can be known as showed in the resources below:
 >----/apigithub
+>
 >----------------/user/
+>
 >----------------/users/
+>
 >----------------/repos/
+>
 >----------------/users-repos/
+>
 >----------------/users-repos/
 
 - ##### /apigithub/user/
