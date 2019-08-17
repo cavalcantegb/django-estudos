@@ -29,9 +29,19 @@ HTTP body application/json example:
 
 - ##### /apigithub/users/
 > This resource lists users and returns them with pagination.
+> It must be called through GET method using application/json in the body.
 
 HTTP body application/json example:
 >{
 >	"page":1,
 >   "per_page":3
+>}
+
+- ##### /apigithub/repos/
+> This resource provides the repos from a specific user.
+> It must be called through GET method using application/json in the body.
+
+HTTP body application/json example:
+>{
+>	"username":"cavalcantegb"
 >}
