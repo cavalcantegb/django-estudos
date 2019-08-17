@@ -3,7 +3,7 @@
 The purpose of this application is to allow users to fetch user and repositories data from github via a REST api.
 
 
-##### Hosted at "http://apigithub-guilhermebastos.heroku.com" the API has 5 endpoints.
+##### Hosted at "http://apigit-guilhermebastos.heroku.com" the API has 5 endpoints.
 
 ##### That can be known as showed in the resources below:
 >----/apigithub
