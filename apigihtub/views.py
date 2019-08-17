@@ -17,9 +17,8 @@ class UserGithubView(APIView):
         username = request.data.get("username")
         response = services.get_user(self,username)
         if response is not None:
-            message = response.username
             data = response.parse_user()
-            return Response(data)
+            return Response(data, status=status.HTTP_200_OK)
         else:
             message = "Fail"
         return Response({"message":message})
@@ -51,8 +50,10 @@ class UsersListGithubView(APIView):
         response = services.list_users(page, per_page)
         if response is not None:
             data = response.parse_users()
-            return Response(data)
-    
+            return Response(data, status=status.HTTP_200_OK)
+
+####### Create Users and their respoective repos
+class UsersReposCreateGithubView(APIView):   
     def post(self, request):
         users = request.data.get("users")
         
@@ -75,7 +76,7 @@ class UsersListGithubView(APIView):
                                 repo_saved = repo_serializer.save()
                             except:
                                 pass
-        return Response({"data": "Sucesss"})
+        return Response({"message": "Sucesss"}, status=status.HTTP_200_OK)
                 
 ####### List Users and Repos
 class UsersReposListGithubView(APIView):
