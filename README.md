@@ -18,7 +18,7 @@ The purpose of this application is to allow users to fetch user and repositories
 >
 >----------------/users-repos/
 
-- ##### /apigithub/user/
+- ### /apigithub/user/
 > This resource retrieves a user and returns its username, github url and github id.
 > It must be called through GET method using application/json in the body.
 
@@ -27,7 +27,7 @@ HTTP body application/json example:
 >	"username":"cavalcantegb"
 >}
 
-- ##### /apigithub/users/
+- ### /apigithub/users/
 > This resource lists users and returns them with pagination.
 > It must be called through GET method using application/json in the body.
 
@@ -37,7 +37,7 @@ HTTP body application/json example:
 >   "per_page":3
 >}
 
-- ##### /apigithub/repos/
+- ### /apigithub/repos/
 > This resource provides the repos from a specific user.
 > It must be called through GET method using application/json in the body.
 
