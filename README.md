@@ -5,6 +5,8 @@ The purpose of this application is to allow users to fetch user and repositories
 
 ##### Hosted at "http://apigit-guilhermebastos.heroku.com" the API has 5 endpoints.
 
+##### Swagger: https://apigit-guilhermebastos.herokuapp.com/api_doc/
+
 ##### That can be known as showed in the resources below:
 >----/apigithub
 >
