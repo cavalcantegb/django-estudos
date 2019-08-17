@@ -45,3 +45,21 @@ HTTP body application/json example:
 >{
 >	"username":"cavalcantegb"
 >}
+
+- ### /apigithub/user-repos/
+> This resource retrieves from our database all users and their github repos.
+> This resource must be called through GET method.
+> It will accept an array of users as shown below in the example.
+
+- ### /apigithub/user-repos-populate/
+> This resource receives a list of users and save them in the database with their respectives
+> repositories.
+> This resource must be called through POST method using application/json in the body.
+> It will accept an array of users as shown below in the example.
+
+HTTP body application/json example:
+>{
+>	"users" : [
+>               {"user":"cavalcantegb"}
+>             ]
+>}
