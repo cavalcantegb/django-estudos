@@ -16,7 +16,7 @@ The purpose of this application is to allow users to fetch user and repositories
 >
 >----------------/users-repos/
 >
->----------------/users-repos/
+>----------------/users-repos-populate/
 
 - ### /apigithub/user/
 > This resource retrieves a user and returns its username, github url and github id.
