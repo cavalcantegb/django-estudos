@@ -9,7 +9,7 @@ dj-static==0.0.6
 Django==2.0.12
 django-heroku==0.3.1
 django-rest-swagger==2.2.0
-djangorestframework==3.10.2
+djangorestframework==3.11.2
 gunicorn==19.9.0
 idna==2.8
 isort==4.3.21
